@@ -92,10 +92,10 @@ export function createScene(container: HTMLElement, modelPath: string): void {
 
     // Zoom controls
     if (keys['q']) {
-      cameraState.radius = Math.max(cameraState.radius - 5, minRadius);
+      cameraState.radius = Math.max(cameraState.radius - 0.5, minRadius);
     }
     if (keys['e']) {
-      cameraState.radius = Math.min(cameraState.radius + 5, maxRadius);
+      cameraState.radius = Math.min(cameraState.radius + 0.5, maxRadius);
     }
 
     // Manual horizontal rotation
