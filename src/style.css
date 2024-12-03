@@ -1,0 +1,42 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* style.css */
+
+body {
+  margin: 0; /* Remove default margin */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+canvas {
+  display: block; /* Remove scrollbars caused by inline elements */
+  width: 100vw; /* Make canvas width fill the viewport */
+  height: 100vh; /* Make canvas height fill the viewport */
+}
+
+select {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
