@@ -1,6 +1,7 @@
 import './style.css';
-import { createThreeScene } from './simpleImports';
-import { createScene } from './shape';
+import { createThreeScene } from './simpleShape';
+import { createScene } from './simpleImport';
+import { createSceneComplex } from './complexMoves';
 
 const container = document.body;
 
@@ -17,7 +18,8 @@ document.body.appendChild(dropdown);
 // Define scene options
 const scenes = [
   { label: 'Scene 1 (Simple Objects)', callback: () => createThreeScene(container) },
-  { label: 'Scene 2 (GLTF Model)', callback: () => createScene(container, '/models/bldg.glb') },
+  { label: 'Scene 2 (GLTF Model of Building)', callback: () => createScene(container, '/models/bldg.glb') },
+  { label: 'Scene 3 (GLTF Model of Bedroom)', callback: () => createSceneComplex(container, '/models/bed.glb') },
 ];
 
 // Populate dropdown with options
@@ -43,5 +45,5 @@ dropdown.addEventListener('change', () => {
 });
 
 // Set the default scene
-dropdown.value = '1'; // Default to the first scene
-scenes[1].callback();
+dropdown.value = '2'; // Default to the first scene
+scenes[2].callback();
