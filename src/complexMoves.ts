@@ -14,7 +14,11 @@ export function createSceneComplex(container: HTMLElement, modelPath: string): v
   camera.position.set(30, 30, 30);
   camera.lookAt(0, 0, 0);
 
-  const renderer = new THREE.WebGLRenderer();
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 

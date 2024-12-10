@@ -32,7 +32,10 @@ export function createScene(container: HTMLElement, modelPath: string): void {
   );
   camera.lookAt(centerPoint);
 
-  const renderer = new THREE.WebGLRenderer();
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
@@ -92,10 +95,10 @@ export function createScene(container: HTMLElement, modelPath: string): void {
 
     // Zoom controls
     if (keys['q']) {
-      cameraState.radius = Math.max(cameraState.radius - 5, minRadius);
+      cameraState.radius = Math.max(cameraState.radius - 0.1, minRadius);
     }
     if (keys['e']) {
-      cameraState.radius = Math.min(cameraState.radius + 5, maxRadius);
+      cameraState.radius = Math.min(cameraState.radius + 0.1, maxRadius);
     }
 
     // Manual horizontal rotation
