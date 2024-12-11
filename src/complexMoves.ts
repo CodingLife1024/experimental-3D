@@ -18,7 +18,6 @@ export function createSceneComplex(container: HTMLElement, modelPath: string): v
   container.appendChild(canvas);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 
-
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
