@@ -2,6 +2,7 @@ import './style.css';
 import { createThreeScene } from './simpleShape';
 import { createScene } from './simpleImport';
 import { createSceneComplex } from './complexMoves';
+import { processingAnalyser } from './processingAnalyser';
 
 const container = document.body;
 
@@ -20,6 +21,7 @@ const scenes = [
   { label: 'Scene 1 (Simple Objects)', callback: () => createThreeScene(container) },
   { label: 'Scene 2 (GLTF Model of Building)', callback: () => createScene(container, '/models/bldg.glb') },
   { label: 'Scene 3 (GLTF Model of Bedroom)', callback: () => createSceneComplex(container, '/models/bed.glb') },
+  { label: 'Scene 4 (GLTF Model of Bedroom multiple copies)', callback: () => processingAnalyser(container, '/models/bed.glb') },
 ];
 
 // Populate dropdown with options
@@ -45,5 +47,5 @@ dropdown.addEventListener('change', () => {
 });
 
 // Set the default scene
-dropdown.value = '2'; // Default to the first scene
-scenes[2].callback();
+dropdown.value = '3'; // Default to the first scene
+scenes[3].callback();
