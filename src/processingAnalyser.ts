@@ -18,11 +18,11 @@ export function processingAnalyser(container: HTMLElement, modelPath: string): v
   inputBox.placeholder = 'Enter number of models';
   inputBox.style.position = 'absolute';
   inputBox.style.top = '10px';
-  inputBox.style.left = '10px';
+  inputBox.style.right = '10px';
   inputBox.style.padding = '10px';
   inputBox.style.fontSize = '14px';
   inputBox.style.zIndex = '1000';
-  inputBox.style.alignContent = 'center';
+  inputBox.style.alignContent = 'right';
   wrapper.appendChild(inputBox);
 
   // Create a canvas and append it to the wrapper for Three.js rendering
