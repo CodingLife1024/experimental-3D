@@ -74,7 +74,14 @@ export function gameView(container: HTMLElement, modelPath: string): void {
       function addMultipleModels(count: number) {
         clearModels();
         const gridSize = Math.ceil(Math.sqrt(count)); // Determine grid size
-        const spacing = 30; // Spacing between models
+        const spacing = 40; // Spacing between models
+
+        // Adjust camera based on grid size and spacing
+        const gridExtent = gridSize * spacing;
+        const cameraDistance = gridExtent * 0.8;
+        camera.position.set(cameraDistance, cameraDistance, cameraDistance);
+        camera.lookAt(gridExtent / 2, 0, gridExtent / 2);
+
         for (let i = 0; i < count; i++) {
           const row = Math.floor(i / gridSize);
           const col = i % gridSize;
@@ -106,7 +113,7 @@ export function gameView(container: HTMLElement, modelPath: string): void {
   // OrbitControls for smooth camera movement
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; // Enables smooth movement
-  controls.dampingFactor = 0.1; // Adjust damping intensity
+  controls.dampingFactor = 0.6; // Adjust damping intensity
   controls.autoRotate = false; // Set to true for auto-rotation
 
   // Update camera position and controls
