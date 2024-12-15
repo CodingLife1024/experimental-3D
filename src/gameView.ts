@@ -10,6 +10,9 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 export function gameView(container: HTMLElement, modelPath: string): void {
   // Create a wrapper div for both the input box and the canvas
   const wrapper = document.createElement('div');
+  wrapper.style.position = 'relative';
+  wrapper.style.width = '100%';
+  wrapper.style.height = '100%';
   container.appendChild(wrapper);
 
   // Create the input box and style it
@@ -19,11 +22,13 @@ export function gameView(container: HTMLElement, modelPath: string): void {
   inputBox.style.position = 'absolute';
   inputBox.style.top = '10px';
   inputBox.style.right = '10px';
-  inputBox.style.padding = '10px';
-  inputBox.style.fontSize = '14px';
+  inputBox.style.padding = '5px'; // Reduce padding
+  inputBox.style.fontSize = '12px'; // Adjust font size
   inputBox.style.zIndex = '1000';
-  inputBox.style.alignContent = 'right';
+  inputBox.style.borderRadius = '4px'; // Optional: Add some rounded corners
+  inputBox.style.border = '1px solid #ccc'; // Optional: Add a subtle border
   wrapper.appendChild(inputBox);
+
 
   // Create a canvas and append it to the wrapper for Three.js rendering
   const canvasWrapper = document.createElement('div');
