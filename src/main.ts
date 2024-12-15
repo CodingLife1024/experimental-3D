@@ -3,6 +3,7 @@ import { createThreeScene } from './simpleShape';
 import { createScene } from './simpleImport';
 import { createSceneComplex } from './complexMoves';
 import { processingAnalyser } from './processingAnalyser';
+import { gameView } from './gameView';
 
 const container = document.body;
 
@@ -22,6 +23,7 @@ const scenes = [
   { label: 'Scene 2 (GLTF Model of Building)', callback: () => createScene(container, '/models/bldg.glb') },
   { label: 'Scene 3 (GLTF Model of Bedroom)', callback: () => createSceneComplex(container, '/models/bed.glb') },
   { label: 'Scene 4 (GLTF Model of Bedroom multiple copies)', callback: () => processingAnalyser(container, '/models/bed.glb') },
+  { label: 'Scene 5 (GLTF Model with Game View)', callback: () => gameView(container, '/models/bed.glb') },
 ];
 
 // Populate dropdown with options
@@ -47,5 +49,5 @@ dropdown.addEventListener('change', () => {
 });
 
 // Set the default scene
-dropdown.value = '3'; // Default to the first scene
-scenes[3].callback();
+dropdown.value = '4'; // Default to the first scene
+scenes[4].callback();
