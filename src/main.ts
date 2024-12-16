@@ -21,7 +21,7 @@ document.body.appendChild(dropdown);
 const scenes = [
   { label: 'Scene 1 (Simple Objects)', callback: () => createThreeScene(container) },
   { label: 'Scene 2 (GLTF Model of Building)', callback: () => createScene(container, '/models/bldg.glb') },
-  { label: 'Scene 3 (GLTF Model of Bedroom)', callback: () => createSceneComplex(container, '/models/bed.glb') },
+  { label: 'Scene 3 (GLTF Model of Bedroom)', callback: () => createSceneComplex(container, '/models/fan.obj') },
   { label: 'Scene 4 (GLTF Model of Bedroom multiple copies)', callback: () => processingAnalyser(container, '/models/bed.glb') },
   { label: 'Scene 5 (GLTF Model with Game View)', callback: () => gameView(container, '/models/bed.glb') },
 ];
@@ -49,5 +49,5 @@ dropdown.addEventListener('change', () => {
 });
 
 // Set the default scene
-dropdown.value = '4'; // Default to the first scene
-scenes[4].callback();
+dropdown.value = '2'; // Default to the first scene
+scenes[2].callback();

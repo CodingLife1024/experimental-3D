@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js'; // Use STLLoader for .stl and converted .fcstd files
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'; // Use OBJLoader for .obj files
 
 /**
  * Initializes and renders a Three.js scene with a 3D model.
  * @param container The HTML element where the scene will be rendered.
- * @param modelPath The path to the 3D model file (GLTF/GLB format).
+ * @param modelPath The path to the 3D model file (GLTF/GLB, STL, OBJ, or FCSTD format).
  */
 export function createSceneComplex(container: HTMLElement, modelPath: string): void {
   // Scene setup
@@ -37,19 +39,55 @@ export function createSceneComplex(container: HTMLElement, modelPath: string): v
   pointLight2.position.set(0, -10, 0);
   scene.add(pointLight2);
 
-  // GLTF Loader
-  const loader = new GLTFLoader();
-  loader.load(
-    modelPath,
-    (gltf) => {
-      const model = gltf.scene;
-      model.position.set(0, 0, 0);
-      model.scale.set(10, 10, 10);
-      scene.add(model);
-    },
-    undefined,
-    (error) => console.error('Error loading model:', error)
-  );
+  // Model Loader (GLTF, STL, OBJ, and FCSTD support)
+  const fileExtension = modelPath.split('.').pop()?.toLowerCase();
+
+  if (fileExtension === 'gltf' || fileExtension === 'glb') {
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load(
+      modelPath,
+      (gltf) => {
+        const model = gltf.scene;
+        model.position.set(0, 0, 0);
+        model.scale.set(10, 10, 10);
+        scene.add(model);
+      },
+      undefined,
+      (error) => console.error('Error loading GLTF/GLB model:', error)
+    );
+  } else if (fileExtension === 'stl') {
+    const stlLoader = new STLLoader();
+    stlLoader.load(
+      modelPath,
+      (geometry) => {
+        const material = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(0, 0, 0);
+        mesh.scale.set(10, 10, 10);
+        scene.add(mesh);
+      },
+      undefined,
+      (error) => console.error('Error loading STL model:', error)
+    );
+  } else if (fileExtension === 'obj') {
+    const objLoader = new OBJLoader();
+    objLoader.load(
+      modelPath,
+      (object) => {
+        object.position.set(0, 0, 0);
+        object.scale.set(10, 10, 10);
+        scene.add(object);
+      },
+      undefined,
+      (error) => console.error('Error loading OBJ model:', error)
+    );
+  } else if (fileExtension === 'fcstd') {
+    console.warn(
+      'FCSTD format detected. Ensure the file is pre-converted to STL/OBJ before loading.'
+    );
+  } else {
+    console.error('Unsupported file format:', fileExtension);
+  }
 
   // OrbitControls for smooth camera movement
   const controls = new OrbitControls(camera, renderer.domElement);
